@@ -1,0 +1,39 @@
+clc;
+clear;
+close all;
+
+img = imread("C:\Program Files\MATLAB\R2024b\toolbox\images\imdata\llama.jpg");
+img = im2double(img);
+gray_img = rgb2gray(img);
+neg_img = 1 - img;
+
+
+c = 1;
+log_img = c * log(1 + img);
+log_img = mat2gray(log_img); % Normalize for display
+
+
+gamma = 0.9;
+power_img = img .^ gamma;
+
+figure('Name','Original and Transformed Images','NumberTitle','off');
+
+subplot(2,3,1);
+imshow(img);
+title('Original Image');
+
+subplot(2,3,2);
+imshow(gray_img);
+title('Grayscale Image');
+
+subplot(2,3,3);
+imshow(neg_img);
+title('Negative Image');
+
+subplot(2,3,4);
+imshow(log_img);
+title('Logarithmic Transform');
+
+subplot(2,3,5);
+imshow(power_img);
+title('Power Law Transform');
